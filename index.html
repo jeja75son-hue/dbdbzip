@@ -600,6 +600,15 @@ dialog{color:var(--ink);font-family:var(--font)}
 /* 바로 아래 '해 보기'가 같은 바탕색이라, 아래 여백은 줄여서 두 구역 사이가 두 배로 벌어지지 않게 */
 .change{background:var(--cream);padding-block:var(--sec-top) clamp(28px,4vw,56px)}
 .change h2{max-width:14em}
+.change .h2b{margin-top:clamp(56px,7vw,96px)}
+.won{margin-top:var(--head-gap);display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.won > div{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:clamp(20px,3vw,32px);display:grid;gap:10px}
+.won dt{font-weight:700;font-size:1.06rem;color:var(--ink-2)}
+.won dd{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 16px}
+.won .was{font-size:clamp(1.3rem,2.4vw,1.7rem);font-weight:600;color:var(--ink-3)}
+.won .now{font-size:clamp(2.6rem,6vw,4.2rem);font-weight:800;letter-spacing:-.035em;line-height:1;color:var(--orange-deep)}
+.won-arr{width:44px;height:14px;align-self:center;fill:none;stroke:var(--ink-3);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media (min-width:640px){.won{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}}
 .ledger-head{display:none}
 .ledger{margin-top:var(--head-gap);border-top:2px solid var(--ink)}
 .row{display:grid;grid-template-columns:minmax(0,1fr);gap:8px 24px;padding:22px 0;border-bottom:1px solid var(--line-2);align-items:center}
@@ -1284,7 +1293,13 @@ footer :focus-visible{outline-color:var(--night-ink)}
 
 <section class="change" id="change" data-spy="change">
   <div class="wrap">
-    <h2>그래서, 같은 일에 줄어든 시간</h2>
+    <h2>앱을 쓰기 전과 후, 두 달씩의 영업 성과</h2>
+    <dl class="won">
+      <div><dt>미팅</dt><dd><span class="was num"><span class="sr">전에는 </span>2번</span><svg class="won-arr" viewBox="0 0 58 16" aria-hidden="true"><path d="M2 8h52M46 2l8 6-8 6"/></svg><span class="now num"><span class="sr">지금은 </span>6번</span></dd></div>
+      <div><dt>계약</dt><dd><span class="was num"><span class="sr">전에는 </span>1건</span><svg class="won-arr" viewBox="0 0 58 16" aria-hidden="true"><path d="M2 8h52M46 2l8 6-8 6"/></svg><span class="now num"><span class="sr">지금은 </span>5건</span></dd></div>
+    </dl>
+    <p class="fine"><span class="ph">쓰기 전은 6월 말부터 8월 말,</span> <span class="ph">쓴 뒤는 9월 중순부터 11월 중순.</span> <span class="ph">직접 센 숫자.</span></p>
+    <h2 class="h2b">그래서, 같은 일에 줄어든 시간</h2>
     <div class="ledger-head" aria-hidden="true"><span>하던 일</span><span class="shift"><span>전에는</span><span></span><span>지금은</span></span><span></span></div>
     <dl class="ledger" id="ledger">
       <div class="row"><dt>제안 메일 보내기</dt><dd class="shift"><span class="was"><span class="sr">전에는 </span>퇴근 전 1시간</span><svg class="arr" viewBox="0 0 58 16" aria-hidden="true"><path d="M2 8h52M46 2l8 6-8 6"/></svg><span class="now num"><span class="sr">지금은 </span>15분</span></dd><dd class="more">보내는 양은 오히려 훨씬 많이</dd></div>
