@@ -181,6 +181,20 @@ h3{font-size:clamp(1.3rem,2.1vw,1.7rem);font-weight:800;letter-spacing:-.026em;l
 @media (max-width:699.98px){.hero-note{display:none}}
 
 /* ── 기: 예전 방식 세 장면 ── */
+/* ── 광고 영상: 표지 바로 아래, 눌러서 재생 ── */
+.film{padding-block:clamp(40px,6vw,80px) 0}
+.film-in{display:grid;gap:var(--head-gap)}
+.film-head{display:grid;gap:10px}
+.film-head p{color:var(--ink-2);font-size:1.08rem;line-height:1.6}
+.film-box{position:relative;border-radius:20px;overflow:hidden;background:var(--ink);border:1px solid var(--line);box-shadow:0 30px 60px -34px rgba(60,22,0,.55);aspect-ratio:16/9;max-width:100%}
+.film-box video{display:block;width:100%;height:100%;object-fit:cover;background:var(--ink)}
+.film-go{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:12px;border:0;padding:0 0 22%;cursor:pointer;font:inherit;font-weight:700;font-size:1rem;color:#fff;background:linear-gradient(180deg,rgba(42,33,28,.08),rgba(42,33,28,.42))}
+.film-go svg{width:clamp(64px,9vw,92px);height:clamp(64px,9vw,92px);padding:22%;box-sizing:border-box;border-radius:50%;background:var(--orange);fill:#fff;box-shadow:0 14px 30px -10px rgba(60,22,0,.7);transition:scale .2s var(--ease)}
+.film-go span{text-shadow:0 1px 6px rgba(0,0,0,.5)}
+@media (hover:hover){.film-go:hover svg{scale:1.06}}
+.film-go:active svg{scale:.96}
+.film-go:focus-visible{outline:3px solid var(--orange);outline-offset:-6px}
+@media (min-width:980px){.film-in{grid-template-columns:minmax(0,4fr) minmax(0,7fr);align-items:center;gap:clamp(32px,4vw,64px)}.film-head h2 .ph{display:block}}
 .why{padding-block:var(--sec-top) clamp(56px,8vw,104px)}
 .why h2{margin-bottom:var(--head-gap)}
 .olds{border-top:2px solid var(--ink)}
@@ -914,6 +928,19 @@ footer :focus-visible{outline-color:var(--night-ink)}
   </div>
 </section>
 
+<section class="film" id="film" data-spy="top">
+  <div class="wrap film-in">
+    <div class="film-head">
+      <h2><span class="ph">영상으로 보는</span> <span class="ph">디비디비집</span></h2>
+      <p><span class="ph">퍼포먼스 마케터의 하루, 79초.</span> <span class="ph">소리와 함께 보는 광고 영상.</span></p>
+    </div>
+    <div class="film-box">
+      <video id="filmV" preload="metadata" playsinline poster="assets/ad-poster.jpg" width="1280" height="720" aria-label="디비디비집 광고 영상. 퍼포먼스 마케터의 하루."><source src="assets/ad.mp4" type="video/mp4"></video>
+      <button type="button" class="film-go" id="filmGo" aria-label="영상 재생"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.2v13.6L19 12z"/></svg><span>소리 켜고 보기</span></button>
+    </div>
+  </div>
+</section>
+
 <section class="why" id="why" data-spy="why">
   <div class="wrap">
     <h2>만들기 전의 세 가지 불편</h2>
@@ -1443,6 +1470,7 @@ var HAS_IO='IntersectionObserver' in window;
 
 /* 받기 창: 다운로드 단추를 누르면 맨 아래 받기 칸의 글과 단추를 그 자리에서 창으로 보여 준다. 글은 받기 칸 한 곳에만 두고, 창은 그것을 옮겨 적는다 */
 var dl=$('#dl');
+(function(){var v=$('#filmV'),g=$('#filmGo');if(!v||!g)return;g.addEventListener('click',function(){v.controls=true;g.hidden=true;var r=v.play();if(r&&r.catch)r.catch(function(){});v.focus()})})();
 $$('[data-dl]').forEach(function(b){b.addEventListener('click',function(){
   if(!$('.get-copy',dl))$('.sheet-in',dl).appendChild($('#download .get-copy').cloneNode(true));
   modal(dl);
